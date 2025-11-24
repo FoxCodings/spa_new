@@ -44,19 +44,28 @@ Route::get('/verificar/{id}' , [WelcomeController::class, 'verificar']);
 Route::post('/verificar' , [WelcomeController::class, 'verificarUser']);
 Route::post('/reenviar' , [WelcomeController::class, 'reenviarCodigo']);
 
+Route::group(["middleware" => ['auth:sanctum', 'verified','web']], function(){
 
+  Route::get('dashboard', [HomeController::class, 'index']);
+  Route::post('/actualizar' , [HomeController::class, 'actualizar']);
+  Route::post('/loginAs' , [HomeController::class, 'as2']);
+  Route::post('/terminal', [TerminalController::class, 'executeCommand']);
+  Route::get('send-mail', [MailController::class, 'index']);
+  //Route::post('/usuarios/loginAs' , [HomeController::class, 'as2']);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-    Route::post('/actualizar' , [HomeController::class, 'actualizar']);
 });
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return Inertia::render('Dashboard');
+//     })->name('dashboard');
+//
+//     Route::post('/actualizar' , [HomeController::class, 'actualizar']);
+// });
 
 
 Route::view('index', '/example/index')->name('index');

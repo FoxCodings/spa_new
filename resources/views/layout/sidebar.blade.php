@@ -2,7 +2,7 @@
 <nav>
     <div class="app-logo">
         <a class="logo d-inline-block" href="/dashboard">
-            <img src="{{asset('../assets/images/logo/1.png')}}" alt="#">
+            <img src="{{asset('../assets/images/logo/logospas.png')}}" alt="#">
         </a>
 
         <span class="bg-light-primary toggle-semi-nav">

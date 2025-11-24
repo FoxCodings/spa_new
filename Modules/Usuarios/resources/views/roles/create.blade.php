@@ -21,16 +21,46 @@ div#collapseusuarios .col-lg-6 {
 .todos, .ninguno{
   margin-left: 15px;
 }
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 250px por columna */
+  gap: 8px 16px; /* espacio entre filas y columnas */
+  align-items: center;
+}
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: rgba(71, 196, 213, 0.1) !important;
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+}
+.accordion-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
+  font-size: 0.88rem;
+  color: #fff;
+  text-align: left;
+  background-color: rgba(71, 196, 213, 0.1) !important;
+  border: 0;
+  border-radius: 0;
+  overflow-anchor: none;
+  transition: var(--bs-accordion-transition);
+}
+
 </style>
-<div class="card card-custom">
-  <div class="card-header">
+<div class="card bg-white border-0 rounded-3 mb-4">
+  <div class="card-body p-4">
     <div class="card-title">
       <span class="card-icon"><i class="flaticon-users-1 text-primary"></i></span>
         <h3 class="card-label">{{ isset($rol) ? "Editar Rol " . $rol->nombre : "Nuevo rol" }}</h3>
     </div>
   </div>
   <form class=" needs-validation" novalidate>
-  <div class="card-body">
+  <div class="card-body p-4">
+
+
 
       <div class="card-body" style="padding-top: 0; padding-bottom: 20px;">
         <div class="form-group row" >
@@ -43,9 +73,46 @@ div#collapseusuarios .col-lg-6 {
           </div>
 
         </div>
+        <hr>
         <div role="separator" class="dropdown-divider"></div>
 
-        <div class="form-group row" style="margin-top: 10px;">
+        <div class="accordion app-accordion accordion-light-primary app-accordion-icon-left app-accordion-plus" id="accordionlefticonExample">
+          @foreach(obtenerModulosActivos() as $key => $values)
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne_{{$key}}" aria-expanded="false" aria-controls="lefticon-collapseOne">
+                {{$values->get('titulo')}}
+              </button>
+            </h2>
+            <div id="collapseOne_{{$key}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="form-group checkbox-grid">
+                  @foreach($permisos as $permiso)
+                    @if($values->get('alias') == $permiso->modulo)
+                      <label class="form-check form-check-inline">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               value="{{ $permiso->id }}"
+                               name="page"
+                               @isset($permises)
+                                 @foreach($permises as $permise)
+                                   @if($permise->permission_id == $permiso->id)
+                                     checked
+                                   @endif
+                                 @endforeach
+                               @endisset>
+                        <span>{{ $permiso->name }}</span>
+                      </label>
+                    @endif
+                  @endforeach
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+
+        <!-- <div class="form-group row" style="margin-top: 10px;">
           @foreach(obtenerModulosActivos() as $values)
           <div class="col-lg-4">
             <label><strong>{{$values->get('titulo')}}</strong></label>
@@ -64,7 +131,7 @@ div#collapseusuarios .col-lg-6 {
             </div>
           </div>
           @endforeach
-        </div>
+        </div> -->
 
       </div>
       <div class="card-footer">

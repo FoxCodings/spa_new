@@ -14,4 +14,4 @@
 <link rel="icon" href="{{('../assets/images/logo/favicon.png')}}" type="image/x-icon">
 <link rel="shortcut icon" href="{{('../assets/images/logo/favicon.png')}}" type="image/x-icon">
 
-<title>SPARTASYSTEMS</title>
+<title>LúminaSpa Systems</title>

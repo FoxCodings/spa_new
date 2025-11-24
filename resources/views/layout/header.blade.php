@@ -17,14 +17,14 @@
 
 
 
-                    <li class="header-dark">
+                    <!-- <li class="header-dark">
                         <div class="sun-logo head-icon">
                             <i class="ph ph-moon-stars"></i>
                         </div>
                         <div class="moon-logo head-icon">
                             <i class="ph ph-sun-dim"></i>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="header-notification">
                         @if(mensajes() == '[]')
