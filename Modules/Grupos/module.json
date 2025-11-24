@@ -7,5 +7,8 @@
     "providers": [
         "Modules\\Grupos\\App\\Providers\\GruposServiceProvider"
     ],
-    "files": []
+    "files": [],
+    "clave": "00",
+    "titulo": "Grupos",
+    "icono": "fas fa-cog  text-primary mr-5"
 }
