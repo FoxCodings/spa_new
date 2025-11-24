@@ -1,0 +1,40 @@
+{
+    "name": "Usuarios",
+    "alias": "usuarios",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Usuarios\\App\\Providers\\UsuariosServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "clave": "00",
+    "titulo": "Configuraciónes",
+    "icono": "fas fa-cog  text-primary mr-5",
+    "contenido": {
+        "Usuarios": {
+            "enlace": "/usuarios",
+            "icono": "fas fa-table",
+            "permises": [
+
+            ]
+        },
+        "Roles": {
+            "enlace": "/usuarios/roles",
+            "icono": "fas fa-table",
+            "permises": [
+
+            ]
+        },
+        "Permisos": {
+            "enlace": "/usuarios/permisos",
+            "icono": "fas fa-table",
+            "permises": [
+
+            ]
+        }
+    }
+}

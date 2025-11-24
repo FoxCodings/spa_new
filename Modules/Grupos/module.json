@@ -1,0 +1,11 @@
+{
+    "name": "Grupos",
+    "alias": "grupos",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Grupos\\App\\Providers\\GruposServiceProvider"
+    ],
+    "files": []
+}
