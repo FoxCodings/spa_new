@@ -111,7 +111,19 @@
 
                   success:function(data){
 
-                    Swal.fire("Excelente!", data.success, "success").then(function(){ location.href ="/dashboard"; });
+                    Toastify({
+                        text: data.success,
+                        duration: 3000, // 3 segundos
+                        position: "center",
+                        style: {
+                            background: "rgb(var(--primary),1)",
+                        },
+                        callback: function () {
+                            // Esto se ejecuta después de que el toast desaparezca
+                            location.href ="/dashboard";
+                        }
+                    }).showToast();
+                    //  Swal.fire("Excelente!", data.success, "success").then(function(){ location.href ="/dashboard"; });
 
                   }
 
@@ -149,7 +161,20 @@
 
                   success:function(data){
 
-                    Swal.fire("Excelente!", data.success, "success").then(function(){ tabla.ajax.reload(); });
+                    Toastify({
+                        text: data.success,
+                        duration: 3000, // 3 segundos
+                        position: "center",
+                        style: {
+                            background: "rgb(var(--primary),1)",
+                        },
+                        callback: function () {
+                            // Esto se ejecuta después de que el toast desaparezca
+                            tabla.ajax.reload();
+                        }
+                    }).showToast();
+
+                    //Swal.fire("Excelente!", data.success, "success").then(function(){ tabla.ajax.reload(); });
 
                   }
 
@@ -186,7 +211,19 @@
                },
 
                 success:function(data){
-                  Swal.fire("Excelente!", data.success, "success").then(function(){ tabla.ajax.reload(); });
+                  Toastify({
+                      text: data.success,
+                      duration: 3000, // 3 segundos
+                      position: "center",
+                      style: {
+                          background: "rgb(var(--primary),1)",
+                      },
+                      callback: function () {
+                          // Esto se ejecuta después de que el toast desaparezca
+                          tabla.ajax.reload();
+                      }
+                  }).showToast();
+                  //Swal.fire("Excelente!", data.success, "success").then(function(){ tabla.ajax.reload(); });
 
                 }
 

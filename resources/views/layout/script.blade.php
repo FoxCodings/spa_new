@@ -34,11 +34,13 @@
 <!-- App js-->
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('assets/vendor/notifications/toastify-js.js')}}"></script>
+<script src="{{asset('assets/vendor/toastify/toastify.js')}}"></script>
 
 <script>
 
 $('#loanding').hide();
-$('#loandig').modal('hide');
+// $('#loandig').modal('hide');
 
 function boton_quitar(){
 $('#mensaje1').remove();

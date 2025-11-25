@@ -1,0 +1,14 @@
+{
+    "name": "Citas",
+    "alias": "citas",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Citas\\App\\Providers\\CitasServiceProvider"
+    ],
+    "files": [],
+    "clave": "00",
+    "titulo": "Citas",
+    "icono": "fas fa-cog  text-primary mr-5"
+}

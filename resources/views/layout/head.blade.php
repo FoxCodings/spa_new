@@ -13,5 +13,5 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="icon" href="{{('../assets/images/logo/favicon.png')}}" type="image/x-icon">
 <link rel="shortcut icon" href="{{('../assets/images/logo/favicon.png')}}" type="image/x-icon">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/toastify/toastify.css')}}">
 <title>LúminaSpa Systems</title>

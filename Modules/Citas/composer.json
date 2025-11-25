@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/citas",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Citas\\": "",
+            "Modules\\Citas\\App\\": "app/",
+            "Modules\\Citas\\Database\\Factories\\": "database/factories/",
+            "Modules\\Citas\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Citas\\Tests\\": "tests/"
+        }
+    }
+}

@@ -57,7 +57,7 @@ $(function() {
     createdRow: function ( row, data, index ) {
       $(row).find('.ui.dropdown.acciones').dropdown();
     },
-    language: { url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" }
+    language: { url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" }
   });
 });
 function eliminar(id){
@@ -86,7 +86,19 @@ Swal.fire({
            },
 
             success:function(data){
-              Swal.fire("", data.success, "success").then(function(){ tabla.ajax.reload(); });
+              Toastify({
+                  text: data.success,
+                  duration: 3000, // 3 segundos
+                  position: "center",
+                  style: {
+                      background: "rgb(var(--primary),1)",
+                  },
+                  callback: function () {
+                      // Esto se ejecuta después de que el toast desaparezca
+                      tabla.ajax.reload();
+                  }
+              }).showToast();
+              //Swal.fire("", data.success, "success").then(function(){ tabla.ajax.reload(); });
 
             }
 

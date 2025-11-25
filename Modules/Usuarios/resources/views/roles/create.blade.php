@@ -218,38 +218,60 @@ if (nombre == '' || selected == '') {
          },
           success:function(data){
             if (data.success == 'Se Agrego Satisfactoriamente') {
-              Swal.fire({
-                        title: "",
-                        text: data.success,
-                        icon: "success",
-                        timer: 1500,
-                        showConfirmButton: false,
-                    }).then(function(result) {
-                        if (result.value == true) {
-                             $('#nombre').val('');
+              // Swal.fire({
+              //           title: "",
+              //           text: data.success,
+              //           icon: "success",
+              //           timer: 1500,
+              //           showConfirmButton: false,
+              //       }).then(function(result) {
+              //           if (result.value == true) {
+              //                $('#nombre').val('');
+              //
+              //           }else{
+              //             location.href ="/usuarios/roles"; //esta es la ruta del modulo
+              //           }
+              //       })
 
-                        }else{
-                          location.href ="/usuarios/roles"; //esta es la ruta del modulo
+
+                    Toastify({
+                        text: data.success,
+                        duration: 3000, // 3 segundos
+                        position: "center",
+                        style: {
+                            background: "rgb(var(--primary),1)",
+                        },
+                        callback: function () {
+                          location.href ="/usuarios/roles";
                         }
-                    })
+                    }).showToast();
 
             }else if(data.success == 'Ha sido editado con éxito'){
-              Swal.fire({
-                        title: "",
-                        text: data.success,
-                        icon: "success",
-                        timer: 1500,
-                        showConfirmButton: false,
-                    }).then(function(result) {
-                        if (result.value == true) {
-                             $('#nombre').val('');
-
-                        }else{
-                          location.href ="/usuarios/roles"; //esta es la ruta del modulo
-                        }
-                    })
-            }else{
-
+              // Swal.fire({
+              //           title: "",
+              //           text: data.success,
+              //           icon: "success",
+              //           timer: 1500,
+              //           showConfirmButton: false,
+              //       }).then(function(result) {
+              //           if (result.value == true) {
+              //                $('#nombre').val('');
+              //
+              //           }else{
+              //             location.href ="/usuarios/roles"; //esta es la ruta del modulo
+              //           }
+              //       })
+              Toastify({
+                  text: data.success,
+                  duration: 3000, // 3 segundos
+                  position: "center",
+                  style: {
+                      background: "rgb(var(--primary),1)",
+                  },
+                  callback: function () {
+                    location.href ="/usuarios/roles";
+                  }
+              }).showToast();
             }
 
 

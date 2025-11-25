@@ -141,58 +141,83 @@ function guardar(){
              },
               success:function(data){
                 if (data.success == 'Se Agrego Satisfactoriamente') {
-                  Swal.fire({
-                        title: "Excelente",
-                        text: data.success,
-                        icon: "success",
-                        buttonsStyling: false,
-                        showCancelButton: true,
-                        confirmButtonText: "Continuar Registrando",
-                        cancelButtonText: "No,Gracias",
-                        customClass: {
-                          confirmButton: "btn btn-success btn-sm",
-                          cancelButton: "btn btn-danger btn-sm"
-                        }
-                    }).then(function(result) {
+                  // Swal.fire({
+                  //       title: "Excelente",
+                  //       text: data.success,
+                  //       icon: "success",
+                  //       buttonsStyling: false,
+                  //       showCancelButton: true,
+                  //       confirmButtonText: "Continuar Registrando",
+                  //       cancelButtonText: "No,Gracias",
+                  //       customClass: {
+                  //         confirmButton: "btn btn-success btn-sm",
+                  //         cancelButton: "btn btn-danger btn-sm"
+                  //       }
+                  //   }).then(function(result) {
+                  //
+                  //       if (result.value == true) {
+                  //            $('#nombre').val('');
+                  //            $('#descripcion').val('');
+                  //            $('#precio').val('');
+                  //            $('#id_categoria').val('');
+                  //            $('#stock').val('');
+                  //       }else{
+                  //         location.href ="/usuarios"; //esta es la ruta del modulo
+                  //       }
+                  //   })
 
-                        if (result.value == true) {
-                             $('#nombre').val('');
-                             $('#descripcion').val('');
-                             $('#precio').val('');
-                             $('#id_categoria').val('');
-                             $('#stock').val('');
-                        }else{
-                          location.href ="/usuarios"; //esta es la ruta del modulo
+                    Toastify({
+                        text: data.success,
+                        duration: 3000, // 3 segundos
+                        position: "center",
+                        style: {
+                            background: "rgb(var(--primary),1)",
+                        },
+                        callback: function () {
+                            // Esto se ejecuta después de que el toast desaparezca
+                            window.location.href = "/usuarios";
                         }
-                    })
+                    }).showToast();
 
                 }else if(data.success == 'Ha sido editado con éxito'){
-                  Swal.fire({
-                        title: "Excelente",
-                        text: data.success,
-                        icon: "success",
-                        buttonsStyling: false,
-                        showCancelButton: true,
-                        confirmButtonText: "Continuar Editando",
-                        cancelButtonText: "No,Gracias",
-                        customClass: {
-                          confirmButton: "btn btn-success btn-sm",
-                          cancelButton: "btn btn-danger btn-sm"
-                        }
-                    }).then(function(result) {
-
-                        if (result.value == true) {
-                           $('#nombre').val('');
-                           $('#apellido_paterno').val('');
-                           $('#apellido_materno').val('');
-                           $('#tipo_usuario').val('');
-                           $('#name').val('');
-                           $('#email').val('');
-                           $('#password').val('');
-                        }else{
-                          location.href ="/usuarios";
-                        }
-                    })
+                  Toastify({
+                      text: data.success,
+                      duration: 3000, // 3 segundos
+                      position: "center",
+                      style: {
+                          background: "rgb(var(--primary),1)",
+                      },
+                      callback: function () {
+                          // Esto se ejecuta después de que el toast desaparezca
+                          window.location.href = "/usuarios";
+                      }
+                  }).showToast();
+                  // Swal.fire({
+                  //       title: "Excelente",
+                  //       text: data.success,
+                  //       icon: "success",
+                  //       buttonsStyling: false,
+                  //       showCancelButton: true,
+                  //       confirmButtonText: "Continuar Editando",
+                  //       cancelButtonText: "No,Gracias",
+                  //       customClass: {
+                  //         confirmButton: "btn btn-success btn-sm",
+                  //         cancelButton: "btn btn-danger btn-sm"
+                  //       }
+                  //   }).then(function(result) {
+                  //
+                  //       if (result.value == true) {
+                  //          $('#nombre').val('');
+                  //          $('#apellido_paterno').val('');
+                  //          $('#apellido_materno').val('');
+                  //          $('#tipo_usuario').val('');
+                  //          $('#name').val('');
+                  //          $('#email').val('');
+                  //          $('#password').val('');
+                  //       }else{
+                  //         location.href ="/usuarios";
+                  //       }
+                  //   })
                 }else{
 
                 }

@@ -30,7 +30,10 @@ use Modules\Usuarios\App\Http\Controllers\PermisosController;
 |
 */
 
-Route::prefix('usuarios')->group(function() {
+Route::group(['middleware' => ['web', 'auth', 'canAccess'],'prefix' => 'usuarios', 'namespace' => 'Modules\Usuarios\App\Http\Controllers'], function()
+{
+
+// Route::prefix('usuarios')->group(function() {
 
     Route::get('/' , [UsuariosController::class, 'index']);
     Route::get('/tablausuarios' , [UsuariosController::class, 'tablausuarios']);

@@ -1,5 +1,7 @@
 {
     "Usuarios": true,
     "Usuar": true,
-    "Grupos": true
+    "Grupos": true,
+    "Citas": true,
+    "Clientes": true
 }

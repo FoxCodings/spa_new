@@ -1,0 +1,14 @@
+{
+    "name": "Clientes",
+    "alias": "clientes",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Clientes\\App\\Providers\\ClientesServiceProvider"
+    ],
+    "files": [],
+    "clave": "00",
+    "titulo": "Clientes",
+    "icono": "fas fa-cog  text-primary mr-5"
+}
