@@ -16,27 +16,17 @@
 <!-- latest jquery-->
 <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
 
-<!-- Bootstrap js-->
 <script src="{{asset('assets/vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
-
-<!-- Simple bar js-->
 <script src="{{asset('assets/vendor/simplebar/simplebar.js')}}"></script>
-
-<!-- phosphor js -->
 <script src="{{asset('assets/vendor/phosphor/phosphor.js')}}"></script>
-
-<!-- Customizer js-->
-<!-- <script src="{{asset('assets/js/customizer.js')}}"></script> -->
-
-<!-- prism js-->
 <script src="{{asset('assets/vendor/prism/prism.min.js')}}"></script>
-
-<!-- App js-->
-<script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>  <!-- este reinicia jQuery -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('assets/vendor/notifications/toastify-js.js')}}"></script>
 <script src="{{asset('assets/vendor/toastify/toastify.js')}}"></script>
 
+<!-- JSTREE, AL FINAL DE TODO -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
 <script>
 
 $('#loanding').hide();
