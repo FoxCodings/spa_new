@@ -224,7 +224,7 @@
                             '</span>'+
                         '</div>'+
                         '<div class="flex-grow-1 ps-2">'+
-                            '<p class="contact-name text-dark mb-0 f-w-500">'+nombre+'</p>'+
+                            '<p class="contact-name text-dark mb-0 ">'+nombre+'</p>'+
                             '<p class="mb-0 text-secondary f-s-13">+52'+data[i].telefono+'</p>'+
                         '</div>'+
                         '<div>'+
@@ -352,6 +352,11 @@
                              },
                              callback: function () {
                                datos()
+                               $('#nombre').val('')
+                               $('#apellido_p').val('')
+                               $('#apellido_m').val('')
+                               $('#telefono').val('')
+                               $('#email').val('')
                              }
                          }).showToast();
 
@@ -367,6 +372,11 @@
                        callback: function () {
 
                          datos()
+                         $('#nombre').val('')
+                         $('#apellido_p').val('')
+                         $('#apellido_m').val('')
+                         $('#telefono').val('')
+                         $('#email').val('')
                        }
                    }).showToast();
                  }
