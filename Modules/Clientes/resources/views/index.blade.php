@@ -128,7 +128,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-
+                      <input type="text" id="buscadorCliente" class="form-control mb-3"
+                                placeholder="Buscar cliente...">
                       <div class="chat-contact tabcontent chat-contact-list" id="listacliente">
 
                       </div>
@@ -146,6 +147,16 @@
   $('#editar_cliente').hide()
 
   datos()
+
+  document.getElementById("buscadorCliente").addEventListener("keyup", function () {
+    let filtro = this.value.toLowerCase();
+    let filas = document.querySelectorAll("#listacliente > div");
+
+    filas.forEach(function (fila) {
+        let nombre = fila.querySelector(".contact-name").textContent.toLowerCase();
+        fila.style.display = nombre.includes(filtro) ? "" : "none";
+    });
+});
 
   function nuevoCliente(){
     $('#editar_cliente').hide()
@@ -204,50 +215,46 @@
   }
 
   function datos(){
-    $.ajax({
-           type:"GET",
-           url:"/clientes/traerDatos",
-           headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           },
-             success:function(data){
-                   $('#listacliente').empty();
-                  for (var i = 0; i < data.length; i++) {
+      $.ajax({
+          type:"GET",
+          url:"/clientes/traerDatos",
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success:function(data){
+              $('#listacliente').empty();
 
+              for (var i = 0; i < data.length; i++) {
 
-                    var nombre = data[i].nombre+' '+data[i].apellido_paterno+' '+data[i].apellido_materno;
+                  var nombre = data[i].nombre+' '+data[i].apellido_paterno+' '+data[i].apellido_materno;
 
-                    var lt = '<div class=" d-flex align-items-center py-3" id="fila_'+data[i].id+'">'+
-                        '<div>'+
-                            '<span class="h-40 w-40 d-flex-center b-r-50 position-relative bg-info">'+
-                              '<img src="{{asset("../assets/images/avtar/13.png")}}" alt="" class="img-fluid b-r-50">'+
-                            '</span>'+
-                        '</div>'+
-                        '<div class="flex-grow-1 ps-2">'+
-                            '<p class="contact-name text-dark mb-0 ">'+nombre+'</p>'+
-                            '<p class="mb-0 text-secondary f-s-13">+52'+data[i].telefono+'</p>'+
-                        '</div>'+
-                        '<div>'+
-                            '<span class="h-35 w-35 text-outline-success d-flex-center b-r-50" onclick="editcontact('+data[i].id+')">'+
-                              '<i class="ti ti-edit"></i>'+
-                            '</span>'+
-                        '</div>'+
-                        '<div>'+
-                            '<span class="h-35 w-35 text-outline-danger d-flex-center b-r-50 ms-1" onclick="borrarcontact('+data[i].id+')">'+
-                              '<i class="ti ti-trash"></i>'+
-                            '</span>'+
-                        '</div>'+
-                    '</div>';
+                  var lt = '<div class="d-flex align-items-center py-3" id="fila_'+data[i].id+'">'+
+                      '<div>'+
+                          '<span class="h-40 w-40 d-flex-center b-r-50 position-relative bg-info">'+
+                          '<img src="{{asset("../assets/images/avtar/13.png")}}" alt="" class="img-fluid b-r-50">'+
+                          '</span>'+
+                      '</div>'+
+                      '<div class="flex-grow-1 ps-2">'+
+                          '<p class="contact-name text-dark mb-0 f-w-500">'+nombre+'</p>'+
+                          '<p class="mb-0 text-secondary f-s-13">+52'+data[i].telefono+'</p>'+
+                      '</div>'+
+                      '<div>'+
+                          '<span class="h-35 w-35 text-outline-success d-flex-center b-r-50" onclick="editcontact('+data[i].id+')">'+
+                          '<i class="ti ti-edit"></i>'+
+                          '</span>'+
+                      '</div>'+
+                      '<input type="hidden" id="id_edit" value="'+data[i].id+'">'+
+                      '<div>'+
+                          '<span class="h-35 w-35 text-outline-danger d-flex-center b-r-50 ms-1" onclick="borrarcontact('+data[i].id+')">'+
+                          '<i class="ti ti-trash"></i>'+
+                          '</span>'+
+                      '</div>'+
+                  '</div>';
 
-                    $('#listacliente').append(lt)
-                  }
-
-
-
-
-            }
+                  $('#listacliente').append(lt);
+              }
+          }
       });
-
   }
 
 
@@ -388,7 +395,98 @@
   }
 
   function editar(){
+    var nombre = $('#nombre_edit').val();
+    var apellido_p = $('#apellido_p_edit').val();
+    var apellido_m = $('#apellido_m_edit').val();
+    var telefono = $('#telefono_edit').val();
+    var email = $('#email_edit').val();
+    var id = $('#id_edit').val();
 
+    if (nombre == '' ||
+        apellido_p == '' ||
+        apellido_m == '' ||
+        telefono == '') {
+
+          'use strict'
+          var forms = document.querySelectorAll('.needs-validation')
+          console.log(forms)
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('click', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+    }else{
+      $.ajax({
+             type:"POST",
+             url:"/clientes/updatecontacto",
+             headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             },
+             data:{
+               nombre:nombre,
+               apellido_p:apellido_p,
+               apellido_m:apellido_m,
+               telefono:telefono,
+               email:email,
+               id:id
+               },
+               success:function(data){
+                 if (data.success == 'Se Agrego Satisfactoriamente') {
+
+                         Toastify({
+                             text: data.success,
+                             duration: 3000, // 3 segundos
+                             position: "center",
+                             style: {
+                                 background: "rgb(var(--primary),1)",
+                             },
+                             callback: function () {
+                               datos()
+                               $('#nombre_edit').val('')
+                               $('#apellido_p_edit').val('')
+                               $('#apellido_m_edit').val('')
+                               $('#telefono_edit').val('')
+                               $('#email_edit').val('')
+                               $('#id_edit').val('')
+                               $('#editar_cliente').hide()
+                               $('#nuevo_cliente').show()
+                             }
+                         }).showToast();
+
+                 }else if(data.success == 'Ha sido editado con éxito'){
+
+                   Toastify({
+                       text: data.success,
+                       duration: 3000, // 3 segundos
+                       position: "center",
+                       style: {
+                           background: "rgb(var(--primary),1)",
+                       },
+                       callback: function () {
+
+                         datos()
+                         $('#nombre_edit').val('')
+                         $('#apellido_p_edit').val('')
+                         $('#apellido_m_edit').val('')
+                         $('#telefono_edit').val('')
+                         $('#email_edit').val('')
+                         $('#id_edit').val('')
+                         $('#editar_cliente').hide()
+                         $('#nuevo_cliente').show()
+                       }
+                   }).showToast();
+                 }
+
+
+              }
+        });
+    }
   }
 </script>
 @endsection
