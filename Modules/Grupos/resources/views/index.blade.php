@@ -2,6 +2,40 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
+<style media="screen">
+/* Nivel 1 */
+#divTree a.jstree-anchor[aria-level="1"] span {
+    color: white !important;
+}
+
+/* Nivel 2 */
+#divTree a.jstree-anchor[aria-level="2"] span {
+    color: white !important;
+}
+
+
+/* Nivel 4 */
+
+#divTree a.jstree-anchor[aria-level="1"] {
+    background-color: #EDBBA8 !important;
+    color: white;
+}
+
+#divTree a.jstree-anchor[aria-level="2"] {
+    background-color: #5A8ED6 !important;
+    color: white;
+}
+
+/* #divTree a.jstree-anchor[aria-level="3"] {
+    background-color: rgba(230,126,34,0.25) !important;
+}
+
+#divTree a.jstree-anchor[aria-level="4"] {
+    background-color: rgba(231,76,60,0.25) !important;
+} */
+
+
+</style>
 <div class="card card-custom example example-compact">
 <div class="card-body">
     <form class="form" id="">
@@ -15,7 +49,7 @@
 
           <div class="col-md-6" style="text-align: right;">
 
-            <a href="javascript: editaArea(0, 0);" class="btn btn-primary">
+            <a href="javascript: editaArea(0, 0);" onclick="" class="btn btn-primary">
                 <i class="fas fa-plus icon-sm"></i>
                 Nueva estructura inicial
             </a>
@@ -45,7 +79,7 @@
 
       <div class="row">
 
-        <div class="col-xl-5">
+        <div class="col-xl-12">
 
           <div id="ra-tree-wrapper" style="max-width:800px;">
           <div class="mb-2">
@@ -226,16 +260,34 @@
 
 
 
-
               let treeData = data[0].map(function(item){
-                  return {
-                      id: item.id,
-                      parent: (item.id_padre == 0 ? "#" : item.id_padre),
-                      text: item.nombre
-                  };
+                console.log(item.nivel)
+
+                  if (item.nivel == 1) {
+                    return {
+                        id: item.id,
+                        parent: (item.id_padre == 0 ? "#" : item.id_padre),
+                        text: item.nombre,
+                        icon: "ti ti-database"
+                    };
+                  }else if(item.nivel == 2){
+                    return {
+                        id: item.id,
+                        parent: (item.id_padre == 0 ? "#" : item.id_padre),
+                        text: item.nombre,
+                        icon: "ti ti-file-description"
+                    };
+                  }else{
+                    return {
+                        id: item.id,
+                        parent: (item.id_padre == 0 ? "#" : item.id_padre),
+                        text: item.nombre,
+                        icon: "ti ti-file-description"
+                    };
+                  }
+
+
               });
-
-
 
               $('#divTree').jstree({
                   'core' : {
@@ -243,7 +295,7 @@
                       'check_callback' : true,
                       'themes' : { "responsive": false }
                   },
-                  "plugins" : ["search", "wholerow", "state", "contextmenu"],
+                  "plugins" : ["search", "wholerow", "state"],
                   "contextmenu": {
                       "items": function(node) {
                           return {
